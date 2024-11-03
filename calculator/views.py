@@ -1,6 +1,5 @@
-# myapp/views.py
-
 import requests
+import json
 from django.shortcuts import render
 from django.conf import settings
 
@@ -17,21 +16,14 @@ def calculate(request):
                 # Panggil layanan untuk menghitung luas persegi
                 faasd_url = settings.SQUARE_AREA_URL
                 response = requests.post(faasd_url, json={'side': side_length})
-                response_data = response.json()
-                result = response_data.get('result')
+                response_data = response.json()  # Attempt to parse JSON
+                result = response_data.get('luas_persegi')
 
-            elif calculation_type == 'cube_volume':
-                # Langkah pertama: panggil layanan untuk menghitung luas persegi
-                faasd_square_url = settings.SQUARE_AREA_URL
-                square_response = requests.post(faasd_square_url, json={'side': side_length})
-                square_data = square_response.json()
-                square_area = square_data.get('result')
-
-                # Langkah kedua: hitung volume kubus menggunakan luas persegi
-                faasd_volume_url = settings.CUBE_VOLUME_URL
-                volume_response = requests.post(faasd_volume_url, json={'luas_sisi_kubus': square_area})
-                volume_data = volume_response.json()
-                result = volume_data.get('luas_permukaan_kubus')
+            elif calculation_type == 'cube_surface_area':
+                faasd_surface_url = settings.CUBE_SURFACE_URL
+                surface_response = requests.post(faasd_surface_url, json={'side': side_length})
+                surface_data = surface_response.json()
+                result = surface_data.get('luas_permukaan_kubus')
 
         except requests.exceptions.RequestException as e:
             print(f"Error calling faasd service: {e}")

@@ -10,7 +10,7 @@
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
-        <h1 class="text-2xl font-bold text-center mb-6">Calculate Square Area and Cube Volume</h1>
+        <h1 class="text-2xl font-bold text-center mb-6">Calculate Square Area and Cube Surface Area</h1>
         
         <form method="POST" class="space-y-4">
             {% csrf_token %}
@@ -25,7 +25,7 @@
                 <label for="calculation_type" class="block text-gray-700 text-sm font-bold mb-2">Calculation Type:</label>
                 <select name="calculation_type" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     <option value="square_area">Square Area</option>
-                    <option value="cube_volume">Cube Volume</option>
+                    <option value="cube_surface_area">Cube Surface Area</option>
                 </select>
             </div>
             
@@ -41,8 +41,8 @@
                 <h2 class="font-bold">Result:</h2>
                 {% if calculation_type == 'square_area' %}
                     <p>The area of the square is: <strong>{{ result }}</strong></p>
-                {% elif calculation_type == 'cube_volume' %}
-                    <p>The volume of the cube is: <strong>{{ result }}</strong></p>
+                {% elif calculation_type == 'cube_surface_area' %}
+                    <p>The surface area of the cube is: <strong>{{ result }}</strong></p>
                 {% endif %}
             </div>
         {% endif %}
