@@ -1,0 +1,1 @@
+web: gunicorn lab7_jason_hanif.wsgi --log-file -
