@@ -13,10 +13,9 @@ def calculate(request):
 
         try:
             if calculation_type == 'square_area':
-                # Panggil layanan untuk menghitung luas persegi
-                faasd_url = settings.SQUARE_AREA_URL
-                response = requests.post('http://54.160.130.232:8080/function/luas-persegi', json={'side': side_length})
-                response_data = response.json()  # Attempt to parse JSON
+                faasd_url = "http://35.168.17.66:8080/function/luas-persegi"
+                response = requests.post(faasd_url, json={'side': side_length})
+                response_data = response.json()  
                 result = response_data.get('luas_persegi')
 
             elif calculation_type == 'cube_surface_area':
