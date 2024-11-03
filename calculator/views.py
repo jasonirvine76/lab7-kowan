@@ -19,7 +19,7 @@ def calculate(request):
                 result = response_data.get('luas_persegi')
 
             elif calculation_type == 'cube_surface_area':
-                faasd_surface_url = settings.CUBE_SURFACE_URL
+                faasd_surface_url = "http://52.91.99.232:8080/function/cube"
                 surface_response = requests.post(faasd_surface_url, json={'side': side_length})
                 surface_data = surface_response.json()
                 result = surface_data.get('luas_permukaan_kubus')
